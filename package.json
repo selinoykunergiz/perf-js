@@ -1,0 +1,26 @@
+{
+  "name": "perf-js",
+  "version": "1.0.0",
+  "description": "Performance",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/selinoykunergiz/perf-js.git"
+  },
+  "keywords": [
+    "performance",
+    "analytics"
+  ],
+  "author": "selinoykunergiz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/selinoykunergiz/perf-js/issues"
+  },
+  "homepage": "https://github.com/selinoykunergiz/perf-js#readme",
+  "devDependencies": {
+    "jest": "^27.0.6"
+  }
+}
