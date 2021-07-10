@@ -27,5 +27,8 @@
     "@babel/preset-env": "^7.14.7",
     "babel-preset-minify": "^0.5.1",
     "jest": "^27.0.6"
+  },
+  "engines": {
+    "node": "14.x"
   }
 }
