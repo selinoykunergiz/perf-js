@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "npx babel src --out-dir lib",
+    "start": "npm run build",
     "test": "jest"
   },
   "repository": {
