@@ -5,12 +5,12 @@ let PerfAnalytics = (function() {
         },
 
         calculateMeasures: function() {
-            let URL = this.getURL();
-            let TTFB = this.calculateTTFB();
-            let FCP = this.calculateFCP();
-            let DOMLoad = this.calculateDOMLoad();
-            let WINDOWLoad = this.calculateWindowLoad();
-            this.sendAPI('https://oyku-perf-api.herokuapp.com/api/analytics', { URL, TTFB, FCP, DOMLoad, WINDOWLoad });
+            let url = this.getURL();
+            let ttfb = this.calculateTTFB();
+            let fcp = this.calculateFCP();
+            let domLoad = this.calculateDOMLoad();
+            let windowLoad = this.calculateWindowLoad();
+            this.sendAPI('https://oyku-perf-api.herokuapp.com/api/analytics', { url, ttfb, fcp, domLoad, windowLoad });
         },
 
         getURL: function() {
