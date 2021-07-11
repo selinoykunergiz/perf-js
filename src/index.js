@@ -63,4 +63,4 @@ let PerfAnalytics = (function() {
     }
 })();
 
-PerfAnalytics.__init(); 
+// PerfAnalytics.__init(); 
