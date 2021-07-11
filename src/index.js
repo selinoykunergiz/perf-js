@@ -5,11 +5,16 @@ let PerfAnalytics = (function() {
         },
 
         calculateMeasures: function() {
+            let URL = this.getURL();
             let TTFB = this.calculateTTFB();
             let FCP = this.calculateFCP();
             let DOMLoad = this.calculateDOMLoad();
             let WINDOWLoad = this.calculateWindowLoad();
-            this.sendAPI('https://oyku-perf-api.herokuapp.com/api/analytics', { TTFB, FCP, DOMLoad, WINDOWLoad });
+            this.sendAPI('https://oyku-perf-api.herokuapp.com/api/analytics', { URL, TTFB, FCP, DOMLoad, WINDOWLoad });
+        },
+
+        getURL: function() {
+            return window.location.hostname
         },
 
         calculateTTFB: function() {
