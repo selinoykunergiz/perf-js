@@ -9,7 +9,7 @@ let PerfAnalytics = (function() {
             let FCP = this.calculateFCP();
             let DOMLoad = this.calculateDOMLoad();
             let WINDOWLoad = this.calculateWindowLoad();
-            this.sendAPI('https://selinoykunergiz.com/perf-analytics', { TTFB, FCP, DOMLoad, WINDOWLoad });
+            this.sendAPI('https://oyku-perf-api.herokuapp.com/api/analytics', { TTFB, FCP, DOMLoad, WINDOWLoad });
         },
 
         calculateTTFB: function() {
