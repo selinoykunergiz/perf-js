@@ -10,32 +10,35 @@ let PerfAnalytics = (function() {
             let fcp = this.calculateFCP();
             let domLoad = this.calculateDOMLoad();
             let windowLoad = this.calculateWindowLoad();
-            this.sendAPI('https://oyku-perf-api.herokuapp.com/api/analytics', { url, ttfb, fcp, domLoad, windowLoad });
+            let networkTimings = this.calculateNetworkTimings();
+            this.sendAPI('https://oyku-perf-api.herokuapp.com/api/analytics', { url, ttfb, fcp, domLoad, windowLoad, networkTimings });
         },
 
         getURL: function() {
-            return window.location.hostname
+            return window.location.hostname;
         },
 
         calculateTTFB: function() {
             // https://developer.mozilla.org/en-US/docs/Glossary/time_to_first_byte
-            return window.performance.timing.responseStart - window.performance.timing.navigationStart;
+            return Math.round(window.performance.timing.responseStart - window.performance.timing.navigationStart);
         },
 
         calculateFCP: function() {
             // https://web.dev/fcp/#measure-fcp-in-javascript
             let firstContentfulPaint = window.performance.getEntriesByType('paint').find(e => e.name === 'first-contentful-paint');
-            return firstContentfulPaint ? firstContentfulPaint.startTime : 0;
+            return firstContentfulPaint ? Math.round(firstContentfulPaint.startTime) : 0;
         },
 
         calculateDOMLoad: function() {
             // https://stackoverflow.com/questions/14341156/calculating-page-load-time-in-javascript
-            return window.performance.timing.domContentLoadedEventEnd - window.performance.timing.navigationStart
+            let domLoad = window.performance.timing.domContentLoadedEventEnd - window.performance.timing.navigationStart;
+            return (domLoad > 0) ? Math.round(domLoad) : 0;
         },
 
         calculateWindowLoad: function() {
             // https://developer.mozilla.org/en-US/docs/Web/API/Navigation_timing_API#calculate_the_total_page_load_time
-            return window.performance.timing.loadEventEnd - window.performance.timing.navigationStart
+            let windowLoad = window.performance.timing.loadEventEnd - window.performance.timing.navigationStart;
+            return (windowLoad > 0) ? Math.round(windowLoad) : 0;
         },
 
         calculateNetworkTimings: function() {
@@ -47,7 +50,7 @@ let PerfAnalytics = (function() {
                 timing = (resources[i].startTime > 0) ? (resources[i].responseEnd - resources[i].startTime) : "0";
                 totalTiming += timing;
             }
-            return totalTiming;
+            return (totalTiming > 0) ? Math.round(totalTiming) : 0;
         },
 
         sendAPI: function(url, data) {
