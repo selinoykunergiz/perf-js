@@ -10,8 +10,8 @@ let PerfAnalytics = (function() {
             let fcp = this.calculateFCP();
             let domLoad = this.calculateDOMLoad();
             let windowLoad = this.calculateWindowLoad();
-            let networkTimings = this.calculateNetworkTimings();
-            this.sendAPI('https://oyku-perf-api.herokuapp.com/api/analytics', { url, ttfb, fcp, domLoad, windowLoad, networkTimings });
+            let networkTiming = this.calculateNetworkTimings();
+            this.sendAPI('https://oyku-perf-api.herokuapp.com/api/analytics', { url, ttfb, fcp, domLoad, windowLoad, networkTiming });
         },
 
         getURL: function() {
